@@ -2,13 +2,18 @@
   "ovpn_file":[
     {"id":0,"file":"
       dev tun
+
+
 ###############################################################################
 # Specify the underlying protocol beyond the Internet.
 # Note that this setting must be correspond with the listening setting on
 # the VPN Server.
 # 
 # Specify either 'proto tcp' or 'proto udp'.
+
 proto udp
+
+
 ###############################################################################
 # The destination hostname / IP address, and port number of
 # the target VPN Server.
@@ -26,19 +31,26 @@ proto udp
 # 
 # When you use UDP protocol, the port number must same as the configuration
 # setting of "OpenVPN Server Compatible Function" on the VPN Server.
+
 # Note: The below hostname is came from the Dynamic DNS Client function
 #       which is running on the VPN Server. If you don't want to use
 #       the Dynamic DNS hostname, replace it to either IP address or
 #       other domain's hostname.
+
 remote bpnng01.boldscale.io 1194
+
+
 ###############################################################################
 # The HTTP/HTTPS proxy setting.
 # 
 # Only if you have to use the Internet via a proxy, uncomment the below
 # two lines and specify the proxy address and the port number.
 # In the case of using proxy-authentication, refer the OpenVPN manual.
+
 ;http-proxy-retry
 ;http-proxy [proxy server] [proxy port]
+
+
 ###############################################################################
 # The encryption and authentication algorithm.
 # 
@@ -50,23 +62,31 @@ remote bpnng01.boldscale.io 1194
 #          CAST-CBC CAST5-CBC DES-CBC DES-EDE-CBC DES-EDE3-CBC DESX-CBC
 #          RC2-40-CBC RC2-64-CBC RC2-CBC CAMELLIA-128-CBC CAMELLIA-192-CBC CAMELLIA-256-CBC
 #  auth:   SHA SHA1 SHA256 SHA384 SHA512 MD5 MD4 RMD160
+
 cipher AES-128-CBC
 auth SHA1
+
+
 ###############################################################################
 # Other parameters necessary to connect to the VPN Server.
 # 
 # It is not recommended to modify it unless you have a particular need.
+
 resolv-retry infinite
 nobind
 persist-key
 persist-tun
 client
 verb 3
+
 ###############################################################################
 # Authentication with credentials.
 # 
 # Comment the line out in case you want to use the certificate authentication.
+
 auth-user-pass
+
+
 ###############################################################################
 # The certificate file of the destination VPN Server.
 # 
@@ -74,6 +94,7 @@ auth-user-pass
 # You can replace this CA contents if necessary.
 # Please note that if the server certificate is not a self-signed, you have to
 # specify the signer's root certificate (CA) here.
+
 <ca>
 -----BEGIN CERTIFICATE-----
 MIID+jCCAuKgAwIBAgIBADANBgkqhkiG9w0BAQsFADB8MSMwIQYDVQQDDBpib2xk
@@ -99,31 +120,126 @@ pW5veyJXJgWFSi1DXZwWyMFpLgsy0xeCZpV+2O+uIMA5M1zgZU40PpBF0g2uGDe7
 nON/8k35ol/WAlScyeOxrfFbGph0WoRAKw4scjFOCeaAAaMO5QQSCtkMSUZ6sKZ+
 CMvzGeCvbMexWlU4GTE=
 -----END CERTIFICATE-----
+
 </ca>
+
+
+###############################################################################
+# Client certificate and key.
+# 
+# A pair of client certificate and private key is required in case you want to
+# use the certificate authentication.
+# 
+# To enable it, uncomment the lines below.
+# Paste your certificate in the <cert> block and the key in the <key> one.
+
+;<cert>
+;-----BEGIN CERTIFICATE-----
+;
+;-----END CERTIFICATE-----
+;</cert>
+
+;<key>
+;-----BEGIN RSA PRIVATE KEY-----
+;
+;-----END RSA PRIVATE KEY-----
+;</key>
     "},
     {"id":1,"file":"
-      #######################################################################
-# Parameters necessary to connect to the VPN Server.
-setenv FORWARD_COMPATIBLE 1
-client
-server-poll-timeout 4
+     dev tun
+
+
+###############################################################################
+# Specify the underlying protocol beyond the Internet.
+# Note that this setting must be correspond with the listening setting on
+# the VPN Server.
+# 
+# Specify either 'proto tcp' or 'proto udp'.
+
+proto udp
+
+
+###############################################################################
+# The destination hostname / IP address, and port number of
+# the target VPN Server.
+# 
+# You have to specify as 'remote <HOSTNAME> <PORT>'. You can also
+# specify the IP address instead of the hostname.
+# 
+# Note that the auto-generated below hostname are a "auto-detected
+# IP address" of the VPN Server. You have to confirm the correctness
+# beforehand.
+# 
+# When you want to connect to the VPN Server by using TCP protocol,
+# the port number of the destination TCP port should be same as one of
+# the available TCP listeners on the VPN Server.
+# 
+# When you use UDP protocol, the port number must same as the configuration
+# setting of "OpenVPN Server Compatible Function" on the VPN Server.
+
+# Note: The below hostname is came from the Dynamic DNS Client function
+#       which is running on the VPN Server. If you don't want to use
+#       the Dynamic DNS hostname, replace it to either IP address or
+#       other domain's hostname.
+
+remote bpnng01.boldscale.io 1194
+
+
+###############################################################################
+# The HTTP/HTTPS proxy setting.
+# 
+# Only if you have to use the Internet via a proxy, uncomment the below
+# two lines and specify the proxy address and the port number.
+# In the case of using proxy-authentication, refer the OpenVPN manual.
+
+;http-proxy-retry
+;http-proxy [proxy server] [proxy port]
+
+
+###############################################################################
+# The encryption and authentication algorithm.
+# 
+# Default setting is good. Modify it as you prefer.
+# When you specify an unsupported algorithm, the error will occur.
+# 
+# The supported algorithms are as follows:
+#  cipher: [NULL-CIPHER] NULL AES-128-CBC AES-192-CBC AES-256-CBC BF-CBC
+#          CAST-CBC CAST5-CBC DES-CBC DES-EDE-CBC DES-EDE3-CBC DESX-CBC
+#          RC2-40-CBC RC2-64-CBC RC2-CBC CAMELLIA-128-CBC CAMELLIA-192-CBC CAMELLIA-256-CBC
+#  auth:   SHA SHA1 SHA256 SHA384 SHA512 MD5 MD4 RMD160
+
+cipher AES-128-CBC
+auth SHA1
+
+
+###############################################################################
+# Other parameters necessary to connect to the VPN Server.
+# 
+# It is not recommended to modify it unless you have a particular need.
+
+resolv-retry infinite
 nobind
-# Specified the domain name or IP address of the server"
-remote bpnng01.boldscale.io 1194 udp
-# To connect to the VPN Server as a "Remote-Access VPN Client PC"
-dev-type tun
-dev tun
-# Not sure about these parameters but lets leave them as is...
-ns-cert-type server
-;setenv opt tls-version-min 1.0 or-highest
-reneg-sec 604800
-sndbuf 0
-rcvbuf 0
-# NOTE: LZO commands are pushed by the Access Server at connect time.
-# NOTE: The below line doesn't disable LZO.
-comp-lzo no
+persist-key
+persist-tun
+client
 verb 3
-setenv PUSH_PEER_INFO
+
+###############################################################################
+# Authentication with credentials.
+# 
+# Comment the line out in case you want to use the certificate authentication.
+
+auth-user-pass
+
+
+###############################################################################
+# The certificate file of the destination VPN Server.
+# 
+# The CA certificate file is embedded in the inline format.
+# You can replace this CA contents if necessary.
+# Please note that if the server certificate is not a self-signed, you have to
+# specify the signer's root certificate (CA) here.
+
 <ca>
 -----BEGIN CERTIFICATE-----
 MIID+jCCAuKgAwIBAgIBADANBgkqhkiG9w0BAQsFADB8MSMwIQYDVQQDDBpib2xk
@@ -149,24 +265,30 @@ pW5veyJXJgWFSi1DXZwWyMFpLgsy0xeCZpV+2O+uIMA5M1zgZU40PpBF0g2uGDe7
 nON/8k35ol/WAlScyeOxrfFbGph0WoRAKw4scjFOCeaAAaMO5QQSCtkMSUZ6sKZ+
 CMvzGeCvbMexWlU4GTE=
 -----END CERTIFICATE-----
+
 </ca>
-#######################################################################
+
+
+###############################################################################
+# Client certificate and key.
+# 
+# A pair of client certificate and private key is required in case you want to
+# use the certificate authentication.
+# 
+# To enable it, uncomment the lines below.
+# Paste your certificate in the <cert> block and the key in the <key> one.
+
 ;<cert>
-;----BEGIN CERTIFICATE-----
-;----END CERTIFICATE-----
+;-----BEGIN CERTIFICATE-----
+;
+;-----END CERTIFICATE-----
 ;</cert>
+
 ;<key>
-;----BEGIN PRIVATE KEY-----
-;----END PRIVATE KEY-----
+;-----BEGIN RSA PRIVATE KEY-----
+;
+;-----END RSA PRIVATE KEY-----
 ;</key>
-;key-direction 1
-;<tls-auth>
-#
-# 2048 bit OpenVPN static key (Server Agent)
-#
-;-----BEGIN OpenVPN Static key V1-----
-;-----END OpenVPN Static key V1-----
-;</tls-auth>
     "}     
     ]
 }
