@@ -44,16 +44,6 @@
       "city": "Lagos",
       "country": "Nigeria",
       "image": "nigeria",
-      "ip": "bpnng01.boldscale.io",
-      "active": "true",
-      "signal": "a"
-    },
-    {
-      "id": 1,
-      "file": 1,
-      "city": "Lagos",
-      "country": "Nigeria",
-      "image": "nigeria",
       "ip": "bpnng01.boldscale.io:1194",
       "active": "true",
       "signal": "a"
