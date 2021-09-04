@@ -40,6 +40,16 @@
   "free": [
     {
       "id": 0,
+      "file": 0,
+      "city": "London",
+      "country": "United Kingdom",
+      "image": "unitedkingdom",
+      "ip": "18.134.94.116:1194",
+      "active": "true",
+      "signal": "a"
+    },
+    {
+      "id": 1,
       "file": 1,
       "city": "Lagos",
       "country": "Nigeria",
