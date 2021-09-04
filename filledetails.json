@@ -2,7 +2,72 @@
   "ovpn_file":[
 	    {
 	    	"id":0,
-	    	"file":"dev tun\\n\nproto udp\nremote bpnng01.boldscale.io 1194\n\n;http-proxy-retry\n;http-proxy [proxy server] [proxy port]\n\ncipher AES-128-CBC\nauth SHA1\n\n\nresolv-retry infinite\nnobind\npersist-key\npersist-tun\nclient\nverb 3\n\nauth-user-pass\n\n\n<ca>\n-----BEGIN CERTIFICATE-----\nMIID+jCCAuKgAwIBAgIBADANBgkqhkiG9w0BAQsFADB8MSMwIQYDVQQDDBpib2xk\ndnBuLW5nMDEuc29mdGV0aGVyLm5ldDEjMCEGA1UECgwaYm9sZHZwbi1uZzAxLnNv\nZnRldGhlci5uZXQxIzAhBgNVBAsMGmJvbGR2cG4tbmcwMS5zb2Z0ZXRoZXIubmV0\nMQswCQYDVQQGEwJVUzAeFw0yMTA2MDIxMDQzNTdaFw0zNzEyMzExMDQzNTdaMHwx\nIzAhBgNVBAMMGmJvbGR2cG4tbmcwMS5zb2Z0ZXRoZXIubmV0MSMwIQYDVQQKDBpi\nb2xkdnBuLW5nMDEuc29mdGV0aGVyLm5ldDEjMCEGA1UECwwaYm9sZHZwbi1uZzAx\nLnNvZnRldGhlci5uZXQxCzAJBgNVBAYTAlVTMIIBIjANBgkqhkiG9w0BAQEFAAOC\nAQ8AMIIBCgKCAQEAqFl7AR5A/z0z+e4BI20D4Bg3ZJU/ueQQIIqdm1CJIEt6AXAB\nRFG3et6X+wZS3q/Tva5t2rlcxEmEsqI5PJgQodIVcH6HhL8cH7WFITq20edR7w3H\ncOV80z9djll4YcUN0bNbRC42/sC/Myc5VZdLpLkl9g8cqgusj0XVRZE56VJ4to5K\nfjRkd3YWvQ22uKNOWADrmjIwmdyfLyr+J3OnPBh1tQ9eEC7dwwNALHZWpC/GCPAu\n0/G3HjYwDYbKla1zPG4ej3TSQqbx0azLFjrLP40Om1Y3VpZtDg/3yh4INLLv74WB\nzgkYzXYaNxK6l4PBA1irf3J/mVP816MPXIiD1QIDAQABo4GGMIGDMA8GA1UdEwEB\n/wQFMAMBAf8wCwYDVR0PBAQDAgH2MGMGA1UdJQRcMFoGCCsGAQUFBwMBBggrBgEF\nBQcDAgYIKwYBBQUHAwMGCCsGAQUFBwMEBggrBgEFBQcDBQYIKwYBBQUHAwYGCCsG\nAQUFBwMHBggrBgEFBQcDCAYIKwYBBQUHAwkwDQYJKoZIhvcNAQELBQADggEBAAZy\nqrAkdN5RL2Qc0MK9gk6L5d94bRTQekYbTjqBBNM7Eq2CVWPXv77K2fCo6IYeUcwK\n10/GTd7FILu2QeDwSUCsNv/fvqyw+hCA/s0eXpXokanrgg5A4ya257HCcUdVvevx\nVDLMX3xr9WrVZxs3wnDS1IkGaUHuICMPPtV/iSCOYyDFJtfJLTrfo/l0XHCUeywm\npW5veyJXJgWFSi1DXZwWyMFpLgsy0xeCZpV+2O+uIMA5M1zgZU40PpBF0g2uGDe7\nnON/8k35ol/WAlScyeOxrfFbGph0WoRAKw4scjFOCeaAAaMO5QQSCtkMSUZ6sKZ+\nCMvzGeCvbMexWlU4GTE=\n-----END CERTIFICATE-----\n\n</ca>\n\n;<cert>\n;-----BEGIN CERTIFICATE-----\n;\n;-----END CERTIFICATE-----\n;</cert>\n\n;<key>\n;-----BEGIN RSA PRIVATE KEY-----\n;\n;-----END RSA PRIVATE KEY-----\n;</key>"
+	    	"file":"
+		    
+setenv FORWARD_COMPATIBLE 1
+client
+server-poll-timeout 4
+nobind
+# Specified the domain name or IP address of the server"
+remote bpnng01.boldscale.io 1194 udp
+# To connect to the VPN Server as a "Remote-Access VPN Client PC"
+dev-type tun
+dev tun
+# Not sure about these parameters but lets leave them as is...
+ns-cert-type server
+;setenv opt tls-version-min 1.0 or-highest
+reneg-sec 604800
+sndbuf 0
+rcvbuf 0
+# NOTE: LZO commands are pushed by the Access Server at connect time.
+# NOTE: The below line doesn't disable LZO.
+comp-lzo no
+verb 3
+setenv PUSH_PEER_INFO
+<ca>
+-----BEGIN CERTIFICATE-----
+MIID+jCCAuKgAwIBAgIBADANBgkqhkiG9w0BAQsFADB8MSMwIQYDVQQDDBpib2xk
+dnBuLW5nMDEuc29mdGV0aGVyLm5ldDEjMCEGA1UECgwaYm9sZHZwbi1uZzAxLnNv
+ZnRldGhlci5uZXQxIzAhBgNVBAsMGmJvbGR2cG4tbmcwMS5zb2Z0ZXRoZXIubmV0
+MQswCQYDVQQGEwJVUzAeFw0yMTA2MDIxMDQzNTdaFw0zNzEyMzExMDQzNTdaMHwx
+IzAhBgNVBAMMGmJvbGR2cG4tbmcwMS5zb2Z0ZXRoZXIubmV0MSMwIQYDVQQKDBpi
+b2xkdnBuLW5nMDEuc29mdGV0aGVyLm5ldDEjMCEGA1UECwwaYm9sZHZwbi1uZzAx
+LnNvZnRldGhlci5uZXQxCzAJBgNVBAYTAlVTMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEAqFl7AR5A/z0z+e4BI20D4Bg3ZJU/ueQQIIqdm1CJIEt6AXAB
+RFG3et6X+wZS3q/Tva5t2rlcxEmEsqI5PJgQodIVcH6HhL8cH7WFITq20edR7w3H
+cOV80z9djll4YcUN0bNbRC42/sC/Myc5VZdLpLkl9g8cqgusj0XVRZE56VJ4to5K
+fjRkd3YWvQ22uKNOWADrmjIwmdyfLyr+J3OnPBh1tQ9eEC7dwwNALHZWpC/GCPAu
+0/G3HjYwDYbKla1zPG4ej3TSQqbx0azLFjrLP40Om1Y3VpZtDg/3yh4INLLv74WB
+zgkYzXYaNxK6l4PBA1irf3J/mVP816MPXIiD1QIDAQABo4GGMIGDMA8GA1UdEwEB
+/wQFMAMBAf8wCwYDVR0PBAQDAgH2MGMGA1UdJQRcMFoGCCsGAQUFBwMBBggrBgEF
+BQcDAgYIKwYBBQUHAwMGCCsGAQUFBwMEBggrBgEFBQcDBQYIKwYBBQUHAwYGCCsG
+AQUFBwMHBggrBgEFBQcDCAYIKwYBBQUHAwkwDQYJKoZIhvcNAQELBQADggEBAAZy
+qrAkdN5RL2Qc0MK9gk6L5d94bRTQekYbTjqBBNM7Eq2CVWPXv77K2fCo6IYeUcwK
+10/GTd7FILu2QeDwSUCsNv/fvqyw+hCA/s0eXpXokanrgg5A4ya257HCcUdVvevx
+VDLMX3xr9WrVZxs3wnDS1IkGaUHuICMPPtV/iSCOYyDFJtfJLTrfo/l0XHCUeywm
+pW5veyJXJgWFSi1DXZwWyMFpLgsy0xeCZpV+2O+uIMA5M1zgZU40PpBF0g2uGDe7
+nON/8k35ol/WAlScyeOxrfFbGph0WoRAKw4scjFOCeaAAaMO5QQSCtkMSUZ6sKZ+
+CMvzGeCvbMexWlU4GTE=
+-----END CERTIFICATE-----
+</ca>
+#######################################################################
+;<cert>
+;----BEGIN CERTIFICATE-----
+;----END CERTIFICATE-----
+;</cert>
+;<key>
+;----BEGIN PRIVATE KEY-----
+;----END PRIVATE KEY-----
+;</key>
+;key-direction 1
+;<tls-auth>
+#
+# 2048 bit OpenVPN static key (Server Agent)
+#
+;-----BEGIN OpenVPN Static key V1-----
+;-----END OpenVPN Static key V1-----
+;</tls-auth>
+		    "
 	    }     
     ]
 }
