@@ -39,7 +39,7 @@ proto udp
 #       the Dynamic DNS hostname, replace it to either IP address or
 #       other domain's hostname.
 
-remote eu0001.v4.softether.net 1194
+remote 18.134.94.116 1194
 
 
 ###############################################################################
