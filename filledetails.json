@@ -2,9 +2,7 @@
   "ovpn_file":[
 	    {
 	    	"id":0,
-	    	"file": "
-		    
-dev tun
+	    	"file": "dev tun
 dev-type tun
 ns-cert-type server
 
