@@ -1,0 +1,15 @@
+{
+  "nigeria":{
+    "interface":{
+      "private_key":"kAV6ncLhQTIVpnpJMgTGw4r/9RR9tg1Hv66NwCbxI1s=",
+      "public_key":"xnaqg/fpWbGnepSz5U3/YkSeCAE4ZvFzjFh6p04uTWO=",
+      "addresses":"10.10.10.3/32",
+      "dns_servers":"1.1.1.1, 8.8.8.8"
+    }
+  },
+  "peer":{
+    "public_key":"QRi2nI/TMrMkX/AaPD+ofudyKwg|421+48BEn7tLw1s=",
+    "allowed_ips":"0.0.0.0/0",
+    "endpoint":"102.68.85.113:51820"
+  }
+}
